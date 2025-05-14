@@ -1,21 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float a = 2.0f;
-float b = 3.0f;
-
-float quadratica(float x) {
-    return a * x * x + b * x + c; 
+// Função recursiva para somar de 1 até n
+int somaRecursiva(int n) 
+{
+    if (n <= 1) 
+    {
+        return n; // Caso base: se n é 1 ou 0, retorna n
+    }
+    return n + somaRecursiva(n - 1); // Passo recursivo
 }
 
 int main() 
 {
-    int x;
+    int numero;
 
-    scanf("%d", &x);
+    printf("Digite um número inteiro positivo: ");
+    scanf("%d", &numero);
 
-    printf("y(%.2f) = %.2f * %.2f + %.2f = %.2f\n", x, a, x, b, quadratica(x));
+    if (numero < 1) {
+        printf("O número deve ser maior ou igual a 1.\n");
+    } else {
+        int resultado = somaRecursiva(numero);
+        printf("A soma de 1 até %d é: %d\n", numero, resultado);
+    }
 
+    getchar(); // Para pausar antes de sair
     getchar();
     return 0;
 }
