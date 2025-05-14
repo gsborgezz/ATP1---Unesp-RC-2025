@@ -1,36 +1,30 @@
 #include <stdio.h>
-#include <math.h>  // Para a função sqrt()
+#include <stdlib.h>
 
-// Função que verifica se o número é primo
-int eh_primo(int n) {
-    if (n <= 1) {
-        return 0;  // Números menores ou iguais a 1 não são primos
-    }
-
-    // Verifica divisibilidade de 2 até a raiz quadrada de n
-    for (int i = 2; i < n; i++) {
-        if (n % i == 0) {
-            return 0;  // Encontrou um divisor, não é primo
-        }
-    }
-
-    return 1;  // Não encontrou divisores, o número é primo
+// Função recursiva para calcular base^expoente
+int potencia(int base, int expoente) {
+    if (expoente == 0)
+        return 1;  // Caso base: qualquer número elevado a 0 é 1
+    else
+        return base * potencia(base, expoente - 1);  // Passo recursivo
 }
 
-int main() 
-{
-    int numero;
+int main() {
+    int base, expoente;
 
-    // Leitura do número
-    printf("Digite um número para verificar se é primo: ");
-    scanf("%d", &numero);
+    printf("Digite a base: ");
+    scanf("%d", &base);
 
-    // Chama a função e verifica se o número é primo
-    if (eh_primo(numero)) {
-        printf("%d é primo.\n", numero);
+    printf("Digite o expoente (positivo): ");
+    scanf("%d", &expoente);
+
+    if (expoente < 0) {
+        printf("Erro: o expoente deve ser positivo.\n");
     } else {
-        printf("%d não é primo.\n", numero);
+        int resultado = potencia(base, expoente);
+        printf("%d elevado a %d é %d\n", base, expoente, resultado);
     }
 
+    getchar(); // Para manter a janela aberta (em alguns sistemas)
     return 0;
 }
